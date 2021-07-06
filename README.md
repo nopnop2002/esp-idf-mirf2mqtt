@@ -60,9 +60,6 @@ __However, changing to some pins does not work properly.__
 # Communicat with AtMega/STM32/ESP8266/ESP8285   
 I used [this](https://github.com/nopnop2002/Arduino-STM32-nRF24L01) library on Arduino environment.   
 
-# Communicat with Raspberry Pi
-I used [this](https://github.com/nopnop2002/Raspberry-Mirf) library on Raspberry Pi.   
-
 # Receive MQTT data using mosquitto_sub
 ```mosquitto_sub -h 192.168.10.40 -p 1883 -t '/mirf/#' -F %X -d```
 
