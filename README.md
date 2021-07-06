@@ -57,6 +57,11 @@ __However, changing to some pins does not work properly.__
 ## MQTT Server Setting
 ![config-mqtt](https://user-images.githubusercontent.com/6020549/124592695-afc12c80-de98-11eb-9675-814f2ae3d931.jpg)
 
+# Communicat with AtMega/STM32/ESP8266/ESP8285   
+I used [this](https://github.com/nopnop2002/Arduino-STM32-nRF24L01) library on Arduino environment.   
+
+# Communicat with Raspberry Pi
+I used [this](https://github.com/nopnop2002/Raspberry-Mirf) library on Raspberry Pi.   
 
 # Receive MQTT data using mosquitto_sub
 ```mosquitto_sub -h 192.168.10.40 -p 1883 -t '/mirf/#' -F %X -d```
@@ -106,7 +111,13 @@ There is a lot of information on the internet about the node.js + __real time__ 
 - [pusher](https://pusher.com/tutorials/graph-javascript/)
 
 
+# Important
+When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
+Because nRF24L01 remembers the previous setting.   
+nRF24L01 does not have Software Reset function.   
+
 # Reference
 
 https://github.com/nopnop2002/esp-idf-mirf
+
 
