@@ -25,18 +25,6 @@
 #include "mirf.h"
 #include "mqtt.h"
 
-typedef struct {
-	unsigned long now_millis;
-	uint8_t data[28];
-} PAYLOAD_t;
-
-typedef union {
-	uint8_t value[32];
-	PAYLOAD_t payload;
-} MYDATA_t;
-
-MYDATA_t mydata;
-
 static const char *TAG = "MAIN";
 
 /* FreeRTOS event group to signal when we are connected*/
@@ -173,10 +161,10 @@ void mirf_receiver(void *pvParameters)
 	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CSN_GPIO=%d",CONFIG_CSN_GPIO);
 	spi_master_init(&dev, CONFIG_CE_GPIO, CONFIG_CSN_GPIO, CONFIG_MISO_GPIO, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO);
 
+	uint8_t mydata[32];
 	Nrf24_setRADDR(&dev, (uint8_t *)"FGHIJ");
 	uint8_t payload = sizeof(mydata);
-	//uint8_t payload = sizeof(value);
-	ESP_LOGI(TAG, "payload=%d", payload);
+	ESP_LOGI(pcTaskGetTaskName(0), "payload=%d", payload);
 	uint8_t channel = 90;
 	Nrf24_config(&dev, channel, payload);
 	Nrf24_printDetails(&dev);
@@ -186,20 +174,18 @@ void mirf_receiver(void *pvParameters)
 	while(1) {
 		if (Nrf24_dataReady(&dev)) { //When the program is received, the received data is output from the serial port
 			//traceHeap();
-			Nrf24_getData(&dev, mydata.value);
-			ESP_LOGI(pcTaskGetTaskName(0), "Got now_millis=%lu", mydata.payload.now_millis);
-			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetTaskName(0), mydata.payload.data, sizeof(mydata.payload.data), ESP_LOG_INFO);
+			Nrf24_getData(&dev, mydata);
+			ESP_LOGI(pcTaskGetTaskName(0), "Got data from nRF24L01");
+			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetTaskName(0), mydata, sizeof(mydata), ESP_LOG_INFO);
 			mqttBuf.topic_type = PUBLISH;
-			//strcpy(mqttBuf.topic, CONFIG_MQTT_TOPIC);
-			//mqttBuf.topic_len = strlen(CONFIG_MQTT_TOPIC) + strlen;
-			sprintf(mqttBuf.topic, "%s/%lu", CONFIG_MQTT_TOPIC, mydata.payload.now_millis);
+			strcpy(mqttBuf.topic, CONFIG_MQTT_TOPIC);
 			mqttBuf.topic_len = strlen(mqttBuf.topic);
-			mqttBuf.payload_len = sizeof(mydata.payload.data);
-			for(int i=0;i<sizeof(mydata.payload.data);i++) {
-				mqttBuf.payload[i] = mydata.payload.data[i];
+			mqttBuf.payload_len = sizeof(mydata);
+			for(int i=0;i<sizeof(mydata);i++) {
+				mqttBuf.payload[i] = mydata[i];
 			}
 			if (xQueueSend(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY) != pdPASS) {
-				ESP_LOGE(TAG, "xQueueSend Fail");
+				ESP_LOGE(pcTaskGetTaskName(0), "xQueueSend Fail");
 			}
 
 		}
@@ -219,8 +205,9 @@ void mirf_transmitter(void *pvParameters)
 	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CSN_GPIO=%d",CONFIG_CSN_GPIO);
 	spi_master_init(&dev, CONFIG_CE_GPIO, CONFIG_CSN_GPIO, CONFIG_MISO_GPIO, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO);
 
+	uint8_t mydata[32];
 	Nrf24_setRADDR(&dev, (uint8_t *)"ABCDE");
-	uint8_t payload = sizeof(mydata.value);
+	uint8_t payload = sizeof(mydata);
 	uint8_t channel = 90;
 	Nrf24_config(&dev, channel, payload);
 	Nrf24_printDetails(&dev);
@@ -254,16 +241,16 @@ void mirf_transmitter(void *pvParameters)
 		if (mqttBuf.topic_type == SUBSCRIBE) {
 			ESP_LOGI(pcTaskGetTaskName(0), "topic=[%s] topic_len=%d", mqttBuf.topic, mqttBuf.topic_len);
 			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetTaskName(0), mqttBuf.payload, mqttBuf.payload_len, ESP_LOG_INFO);
-			mydata.payload.now_millis = xTaskGetTickCount() * portTICK_RATE_MS;
-			ESP_LOGI(pcTaskGetTaskName(0), "now_millis=%ld", mydata.payload.now_millis);
+			//mydata.payload.now_millis = xTaskGetTickCount() * portTICK_RATE_MS;
+			//ESP_LOGI(pcTaskGetTaskName(0), "now_millis=%ld", mydata.payload.now_millis);
 			int payload_len = mqttBuf.payload_len;
-			if (mqttBuf.payload_len > 28) payload_len = 28;
-			memset(mydata.payload.data, 0, sizeof(mydata.payload.data));
+			if (mqttBuf.payload_len > 32) payload_len = 32;
+			memset(mydata, 0, sizeof(mydata));
 			for(int i=0;i<payload_len;i++) {
-				mydata.payload.data[i] = mqttBuf.payload[i];
+				mydata[i] = mqttBuf.payload[i];
 			}
 			Nrf24_setTADDR(&dev, (uint8_t *)"FGHIJ");		//Set the receiver address
-			Nrf24_send(&dev, mydata.value);					//Send instructions, send random number value
+			Nrf24_send(&dev, mydata);					//Send instructions, send random number value
 
 			bool sended = false;
 			ESP_LOGI(pcTaskGetTaskName(0), "Wait for sending.....");
@@ -275,7 +262,7 @@ void mirf_transmitter(void *pvParameters)
 				vTaskDelay(1);
 			}
 			if (sended) {
-				ESP_LOGI(pcTaskGetTaskName(0),"Send success: %lu", mydata.payload.now_millis);
+				ESP_LOGI(pcTaskGetTaskName(0),"Send success");
 			} else {
 				ESP_LOGI(pcTaskGetTaskName(0),"Send fail:");
 			}
