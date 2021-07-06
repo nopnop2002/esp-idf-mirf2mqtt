@@ -71,7 +71,7 @@ You can use Arduino/Emiter/Emitter.ino for transmitter.
 
 ![pub-1](https://user-images.githubusercontent.com/6020549/124592898-f2830480-de98-11eb-8544-e6d53ded2db9.jpg)
 
-You can use Arduino/Receive/Receive.ino foreceiver.   
+You can use Arduino/Receive/Receive.ino for receiver.   
 ![pub-2](https://user-images.githubusercontent.com/6020549/124592904-f31b9b00-de98-11eb-8905-1a6bdbe5706d.jpg)
 
 # Limitation   
