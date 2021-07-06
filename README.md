@@ -2,9 +2,9 @@
 nRF24L01 to mqtt bridge using esp32.   
 It's purpose is to be a bridge between a nRF24L01 and a MQTT-Broker.    
 
-![slide0001](https://user-images.githubusercontent.com/6020549/124592361-56f19400-de98-11eb-8bf7-4ce0c2f6919f.jpg)
+![slide0001](https://user-images.githubusercontent.com/6020549/124595955-a33ed300-de9c-11eb-898d-e8cc4e8712fb.jpg)
 
-![slide0002](https://user-images.githubusercontent.com/6020549/124592398-61ac2900-de98-11eb-93c0-8d07519ff432.jpg)
+![slide0002](https://user-images.githubusercontent.com/6020549/124595966-a639c380-de9c-11eb-9cf3-6c9e732d802b.jpg)
 
 
 # Installation for ESP32
@@ -62,17 +62,17 @@ __However, changing to some pins does not work properly.__
 ```mosquitto_sub -h 192.168.10.40 -p 1883 -t '/mirf/#' -F %X -d```
 
 ![sub-1](https://user-images.githubusercontent.com/6020549/124592770-c8c9dd80-de98-11eb-85a0-f4a84c7fd7b1.jpg)
-![sub-2](https://user-images.githubusercontent.com/6020549/124592766-c8314700-de98-11eb-8463-c9ff4b79e4cd.jpg)
 
 You can use Arduino/Emiter/Emitter.ino   
+![sub-2](https://user-images.githubusercontent.com/6020549/124592766-c8314700-de98-11eb-8463-c9ff4b79e4cd.jpg)
 
 # Transmit MQTT data using mosquitto_pub
 ```echo -ne "\x01\x02\x03" | mosquitto_pub -h 192.168.10.40 -p 1883 -t '/mirf' -s```
 
 ![pub-1](https://user-images.githubusercontent.com/6020549/124592898-f2830480-de98-11eb-8544-e6d53ded2db9.jpg)
-![pub-2](https://user-images.githubusercontent.com/6020549/124592904-f31b9b00-de98-11eb-8905-1a6bdbe5706d.jpg)
 
 You can use Arduino/Receive/Receive.ino   
+![pub-2](https://user-images.githubusercontent.com/6020549/124592904-f31b9b00-de98-11eb-8905-1a6bdbe5706d.jpg)
 
 # Limitation   
 The maximum payload size of nRF24L01 is 32 bytes.   
