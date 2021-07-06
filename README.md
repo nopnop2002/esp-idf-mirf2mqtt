@@ -92,7 +92,8 @@ Example code in various languages.
 https://github.com/emqx/MQTT-Client-Examples
 
 
-# Visualize CAN-Frame
+# Visualize data from nRF24L01   
+
 ## Using python
 There is a lot of information on the internet about the Python + visualization library.   
 - [matplotlib](https://matplotlib.org/)
