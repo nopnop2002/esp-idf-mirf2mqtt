@@ -63,7 +63,7 @@ __However, changing to some pins does not work properly.__
 
 ![sub-1](https://user-images.githubusercontent.com/6020549/124592770-c8c9dd80-de98-11eb-85a0-f4a84c7fd7b1.jpg)
 
-You can use Arduino/Emiter/Emitter.ino   
+You can use Arduino/Emiter/Emitter.ino for transmitter.   
 ![sub-2](https://user-images.githubusercontent.com/6020549/124592766-c8314700-de98-11eb-8463-c9ff4b79e4cd.jpg)
 
 # Transmit MQTT data using mosquitto_pub
@@ -71,7 +71,7 @@ You can use Arduino/Emiter/Emitter.ino
 
 ![pub-1](https://user-images.githubusercontent.com/6020549/124592898-f2830480-de98-11eb-8544-e6d53ded2db9.jpg)
 
-You can use Arduino/Receive/Receive.ino   
+You can use Arduino/Receive/Receive.ino foreceiver.   
 ![pub-2](https://user-images.githubusercontent.com/6020549/124592904-f31b9b00-de98-11eb-8905-1a6bdbe5706d.jpg)
 
 # Limitation   
