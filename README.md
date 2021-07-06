@@ -65,19 +65,20 @@ Install this library in your Arduino environment.
 You can receive MQTT data using mosquitto_sub.   
 ```mosquitto_sub -h 192.168.10.40 -p 1883 -t '/mirf/#' -F %X -d```
 
-![pub-1](https://user-images.githubusercontent.com/6020549/124676609-d2cff880-def9-11eb-80ab-f49fea19f6d6.jpg)
+![sub-1](https://user-images.githubusercontent.com/6020549/124676650-e5e2c880-def9-11eb-96d7-dd4475cdd2f1.jpg)
+
 
 You can use Arduino/Emiter/Emitter.ino for transmitter.   
-![pub-2](https://user-images.githubusercontent.com/6020549/124676606-d2376200-def9-11eb-86ab-c0f17e958e55.jpg)
+![sub-2](https://user-images.githubusercontent.com/6020549/124676646-e4b19b80-def9-11eb-95f2-d56050d75cce.jpg)
 
 # Transmit data to AtMega/STM32/ESP8266/ESP8285   
 You can transmit MQTT data using mosquitto_pub.   
 ```echo -ne "\x01\x02\x03" | mosquitto_pub -h 192.168.10.40 -p 1883 -t '/mirf' -s```
 
-![sub-1](https://user-images.githubusercontent.com/6020549/124676650-e5e2c880-def9-11eb-96d7-dd4475cdd2f1.jpg)
+![pub-1](https://user-images.githubusercontent.com/6020549/124676609-d2cff880-def9-11eb-80ab-f49fea19f6d6.jpg)
 
 You can use Arduino/Receive/Receive.ino for receiver.   
-![sub-2](https://user-images.githubusercontent.com/6020549/124676646-e4b19b80-def9-11eb-95f2-d56050d75cce.jpg)
+![pub-2](https://user-images.githubusercontent.com/6020549/124676606-d2376200-def9-11eb-86ab-c0f17e958e55.jpg)
 
 # Limitation   
 The maximum payload size of nRF24L01 is 32 bytes.   
