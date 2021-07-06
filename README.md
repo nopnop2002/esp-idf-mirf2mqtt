@@ -4,7 +4,7 @@ It's purpose is to be a bridge between a nRF24L01 and a MQTT-Broker.
 
 ![slide0001](https://user-images.githubusercontent.com/6020549/124595955-a33ed300-de9c-11eb-898d-e8cc4e8712fb.jpg)
 
-![slide0002](https://user-images.githubusercontent.com/6020549/124595966-a639c380-de9c-11eb-9cf3-6c9e732d802b.jpg)
+![slide0002](https://user-images.githubusercontent.com/6020549/124596589-6b845b00-de9d-11eb-8279-83ee578cd872.jpg)
 
 
 # Installation for ESP32
