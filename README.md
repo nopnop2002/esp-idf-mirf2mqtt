@@ -60,6 +60,7 @@ __However, changing to some pins does not work properly.__
 # Communicate with AtMega/STM32/ESP8266/ESP8285   
 I used [this](https://github.com/nopnop2002/Arduino-STM32-nRF24L01) library on Arduino environment.   
 Install this library in your Arduino environment.   
+After installing this library in your Arduino environment, run a sketch of the Arduino folder in this repository.   
 
 # Receive data from AtMega/STM32/ESP8266/ESP8285   
 You can receive MQTT data using mosquitto_sub.   
