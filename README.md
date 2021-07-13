@@ -46,7 +46,7 @@ __However, changing to some pins does not work properly.__
 # Configuration
 
 ![config-main](https://user-images.githubusercontent.com/6020549/124592504-830d1500-de98-11eb-95b7-9787323a645f.jpg)
-![config-app](https://user-images.githubusercontent.com/6020549/124592510-856f6f00-de98-11eb-8413-254b1c448530.jpg)
+![config-app](https://user-images.githubusercontent.com/6020549/125431465-aae40fbd-5126-471b-a978-1672751d4d6c.jpg)
 
 ## nRF24L01 Setting
 ![config-nrf24l01](https://user-images.githubusercontent.com/6020549/124592589-95874e80-de98-11eb-8953-db44222a685d.jpg)
