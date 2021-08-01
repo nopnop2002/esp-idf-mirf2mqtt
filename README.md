@@ -17,7 +17,7 @@ idf.py menuconfig
 idf.py flash
 ```
 
-# Installation for ESP32S2
+# Installation for ESP32-S2
 
 ```
 git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
@@ -27,17 +27,27 @@ idf.py menuconfig
 idf.py flash
 ```
 
+# Installation for ESP32-C3
+
+```
+git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
+cd esp-idf-mirf2mqtt
+idf.py set-target esp32c3
+idf.py menuconfig
+idf.py flash
+```
+
 # Wirering
 
-|nRF24L01||ESP32|ESP32S2|
-|:-:|:-:|:-:|:-:|
-|MISO|--|GPIO19|GPIO33|
-|MOSI|--|GPIO23|GPIO35|
-|SCK|--|GPIO18|GPIO36|
-|CE|--|GPIO16|GPIO37|
-|CSN|--|GPIO17|GPIO38|
-|GND|--|GND|GND|
-|VCC|--|3.3V|3.3V|
+|nRF24L01||ESP32|ESP32S2|ESP32C3|
+|:-:|:-:|:-:|:-:|:-:|
+|MISO|--|GPIO19|GPIO33|GPIO18|
+|MOSI|--|GPIO23|GPIO35|GPIO19|
+|SCK|--|GPIO18|GPIO36|GPIO10|
+|CE|--|GPIO16|GPIO37|GPIO9|
+|CSN|--|GPIO17|GPIO38|GPIO8|
+|GND|--|GND|GND|GND|
+|VCC|--|3.3V|3.3V|3.3V|
 
 __You can change it to any pin using menuconfig.__   
 __However, changing to some pins does not work properly.__

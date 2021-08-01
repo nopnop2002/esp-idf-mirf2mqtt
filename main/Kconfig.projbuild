@@ -7,6 +7,7 @@ menu "Application Configuration"
 			range 0 46
 			default 19 if IDF_TARGET_ESP32
 			default 33 if IDF_TARGET_ESP32S2
+			default 18 if IDF_TARGET_ESP32C3
 			help
 				GPIO number (IOxx) to SPI MISO.
 				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to MISO.
@@ -18,6 +19,7 @@ menu "Application Configuration"
 			range 0 46
 			default 23 if IDF_TARGET_ESP32
 			default 35 if IDF_TARGET_ESP32S2
+			default 19 if IDF_TARGET_ESP32C3
 			help
 				GPIO number (IOxx) to SPI MOSI.
 				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to MOSI.
@@ -29,6 +31,7 @@ menu "Application Configuration"
 			range 0 46
 			default 18 if IDF_TARGET_ESP32
 			default 36 if IDF_TARGET_ESP32S2
+			default 10 if IDF_TARGET_ESP32C3
 			help
 				GPIO number (IOxx) to SPI SCLK.
 				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to SCLK.
@@ -40,6 +43,7 @@ menu "Application Configuration"
 			range 0 46
 			default 16 if IDF_TARGET_ESP32
 			default 37 if IDF_TARGET_ESP32S2
+			default 9  if IDF_TARGET_ESP32C3
 			help
 				GPIO number (IOxx) to CE.
 				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to CE.
@@ -51,6 +55,7 @@ menu "Application Configuration"
 			range 0 46
 			default 17 if IDF_TARGET_ESP32
 			default 38 if IDF_TARGET_ESP32S2
+			default 8  if IDF_TARGET_ESP32C3
 			help
 				GPIO number (IOxx) to CSN.
 				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to CSN.
