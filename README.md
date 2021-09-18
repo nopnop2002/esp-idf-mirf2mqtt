@@ -6,6 +6,9 @@ It's purpose is to be a bridge between a nRF24L01 and a MQTT-Broker.
 
 ![slide0002](https://user-images.githubusercontent.com/6020549/124596589-6b845b00-de9d-11eb-8279-83ee578cd872.jpg)
 
+# Software requirements
+esp-idf v4.4 or later.   
+This is because this version supports ESP32-C3.   
 
 # Installation for ESP32
 
@@ -36,6 +39,13 @@ idf.py set-target esp32c3
 idf.py menuconfig
 idf.py flash
 ```
+
+__Note__   
+For some reason GPIO06, GPIO08, GPIO09, GPIO19 cannot be used for SPI clock pins on my board.   
+I looked at the ESP32-C3 datasheet, but I don't understand why.   
+This may be a problem only for my board.   
+If you find a solution, please let me know.   
+
 
 # Wirering
 
