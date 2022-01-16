@@ -59,7 +59,6 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 |VCC|--|3.3V|3.3V|3.3V|
 
 __You can change it to any pin using menuconfig.__   
-__However, changing to some pins does not work properly.__
 
 
 # Configuration
