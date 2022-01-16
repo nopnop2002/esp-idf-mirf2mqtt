@@ -41,10 +41,9 @@ idf.py flash
 ```
 
 __Note__   
-For some reason GPIO06, GPIO08, GPIO09, GPIO19 cannot be used for SPI clock pins on my board.   
-I looked at the ESP32-C3 datasheet, but I don't understand why.   
-This may be a problem only for my board.   
-If you find a solution, please let me know.   
+For some reason, there are development boards that cannot use GPIO06, GPIO08, GPIO09, GPIO19 for SPI clock pins.   
+According to the ESP32C3 specifications, these pins can also be used as SPI clocks.   
+I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.   
 
 
 # Wirering
@@ -68,13 +67,15 @@ __However, changing to some pins does not work properly.__
 ![config-main](https://user-images.githubusercontent.com/6020549/124592504-830d1500-de98-11eb-95b7-9787323a645f.jpg)
 ![config-app](https://user-images.githubusercontent.com/6020549/125431465-aae40fbd-5126-471b-a978-1672751d4d6c.jpg)
 
-## nRF24L01 Setting
+## nRF24L01 Setting   
 ![config-nrf24l01](https://user-images.githubusercontent.com/6020549/124592589-95874e80-de98-11eb-8953-db44222a685d.jpg)
 
-## WiFi Setting
+## WiFi Setting   
 ![config-wifi](https://user-images.githubusercontent.com/6020549/124592651-a46e0100-de98-11eb-90eb-2ded527454fe.jpg)
 
-## MQTT Server Setting
+## MQTT Server Setting   
+For Receiver, ESP32 publishes this topic.   
+For Transmitter, ESP32 subscrives this topic.   
 ![config-mqtt](https://user-images.githubusercontent.com/6020549/124592695-afc12c80-de98-11eb-9675-814f2ae3d931.jpg)
 
 # Communicate with AtMega/STM32/ESP8266/ESP8285   
