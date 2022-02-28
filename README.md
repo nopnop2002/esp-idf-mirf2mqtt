@@ -45,7 +45,11 @@ __You can change it to any pin using menuconfig.__
 ![config-nrf24l01-2](https://user-images.githubusercontent.com/6020549/155939063-5f70f146-f73d-4656-86f8-e7d770607b22.jpg)
 
 # Configuration for Application
+
+## Receive from radio and send by MQTT   
 ![config-app-1](https://user-images.githubusercontent.com/6020549/155939157-55604038-27c4-4cdd-9fb5-c1973f668c4f.jpg)
+
+## Receive from MQTT and send by radio   
 ![config-app-2](https://user-images.githubusercontent.com/6020549/155939161-93c64e2a-4008-4309-8980-fb7173df1f02.jpg)
 
 ## Radio Setting   
