@@ -50,10 +50,10 @@ __You can change it to any pin using menuconfig.__
 
 ## Radio Setting   
 
-## Receive from radio and send by MQTT   
+- Receive from radio and send by MQTT   
 ![config-radio-1](https://user-images.githubusercontent.com/6020549/155939263-ff917d86-0c07-4baf-b3ab-4165cafa39a6.jpg)
 
-## Receive from MQTT and send by radio   
+- Receive from MQTT and send by radio   
 ![config-radio-2](https://user-images.githubusercontent.com/6020549/155939265-67f89a9d-f723-4c61-9c6e-64392b4a96fb.jpg)
 
 ___The payload size and radio channel must match for both transmission and reception.___
