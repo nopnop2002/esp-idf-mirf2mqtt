@@ -250,7 +250,8 @@ void mirf_transmitter(void *pvParameters)
 			//mydata.payload.now_millis = xTaskGetTickCount() * portTICK_RATE_MS;
 			//ESP_LOGI(pcTaskGetTaskName(0), "now_millis=%ld", mydata.payload.now_millis);
 			int payload_len = mqttBuf.payload_len;
-			if (mqttBuf.payload_len > 32) payload_len = 32;
+			//if (mqttBuf.payload_len > 32) payload_len = 32;
+			if (mqttBuf.payload_len > CONFIG_PAYLOAD_SIZE) payload_len = CONFIG_PAYLOAD_SIZE;
 			memset(mydata, 0, sizeof(mydata));
 			for(int i=0;i<payload_len;i++) {
 				mydata[i] = mqttBuf.payload[i];
