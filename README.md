@@ -10,37 +10,17 @@ It's purpose is to be a bridge between a nRF24L01 and a MQTT-Broker.
 esp-idf v4.4 or later.   
 This is because this version supports ESP32-C3.   
 
-# Installation for ESP32
+# Installation
 
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
 cd esp-idf-mirf2mqtt
-idf.py set-target esp32
+idf.py set-target {esp32/esp32s2/esp32c3}
 idf.py menuconfig
 idf.py flash
 ```
 
-# Installation for ESP32-S2
-
-```Shell
-git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
-cd esp-idf-mirf2mqtt
-idf.py set-target esp32s2
-idf.py menuconfig
-idf.py flash
-```
-
-# Installation for ESP32-C3
-
-```Shell
-git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
-cd esp-idf-mirf2mqtt
-idf.py set-target esp32c3
-idf.py menuconfig
-idf.py flash
-```
-
-__Note__   
+__Note for ESP32C3__   
 For some reason, there are development boards that cannot use GPIO06, GPIO08, GPIO09, GPIO19 for SPI clock pins.   
 According to the ESP32C3 specifications, these pins can also be used as SPI clocks.   
 I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.   
@@ -60,14 +40,22 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 __You can change it to any pin using menuconfig.__   
 
+# Configuration for Transceiver
+![config-nrf24l01-1](https://user-images.githubusercontent.com/6020549/155939056-bbc9a506-7014-4340-b7b4-2b572ac4c353.jpg)
+![config-nrf24l01-2](https://user-images.githubusercontent.com/6020549/155939063-5f70f146-f73d-4656-86f8-e7d770607b22.jpg)
 
-# Configuration
-
-![config-main](https://user-images.githubusercontent.com/6020549/124592504-830d1500-de98-11eb-95b7-9787323a645f.jpg)
-![config-app](https://user-images.githubusercontent.com/6020549/125431465-aae40fbd-5126-471b-a978-1672751d4d6c.jpg)
+# Configuration for Application
+![config-app-1](https://user-images.githubusercontent.com/6020549/155939157-55604038-27c4-4cdd-9fb5-c1973f668c4f.jpg)
+![config-app-2](https://user-images.githubusercontent.com/6020549/155939161-93c64e2a-4008-4309-8980-fb7173df1f02.jpg)
 
 ## nRF24L01 Setting   
 ![config-nrf24l01](https://user-images.githubusercontent.com/6020549/124592589-95874e80-de98-11eb-8953-db44222a685d.jpg)
+
+## Radio Setting   
+![config-radio-1](https://user-images.githubusercontent.com/6020549/155939263-ff917d86-0c07-4baf-b3ab-4165cafa39a6.jpg)
+![config-radio-2](https://user-images.githubusercontent.com/6020549/155939265-67f89a9d-f723-4c61-9c6e-64392b4a96fb.jpg)
+
+___The payload size and radio channel must match for both transmission and reception.___
 
 ## WiFi Setting   
 ![config-wifi](https://user-images.githubusercontent.com/6020549/124592651-a46e0100-de98-11eb-90eb-2ded527454fe.jpg)

@@ -154,27 +154,30 @@ void traceHeap() {
 #if CONFIG_RECEIVER
 void mirf_receiver(void *pvParameters)
 {
-	NRF24_t dev;
-
 	ESP_LOGI(pcTaskGetTaskName(0), "Start");
-	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CE_GPIO=%d",CONFIG_CE_GPIO);
-	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CSN_GPIO=%d",CONFIG_CSN_GPIO);
-	spi_master_init(&dev, CONFIG_CE_GPIO, CONFIG_CSN_GPIO, CONFIG_MISO_GPIO, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO);
+	NRF24_t dev;
+	Nrf24_init(&dev);
 
-	uint8_t mydata[32];
-	Nrf24_setRADDR(&dev, (uint8_t *)"FGHIJ");
+	//uint8_t mydata[32];
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_PAYLOAD_SIZE=%d", CONFIG_PAYLOAD_SIZE);
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_RECEIVER_ADDRESS=[%s]", CONFIG_RECEIVER_ADDRESS);
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_RADIO_CHANNEL=%d", CONFIG_RADIO_CHANNEL);
+	uint8_t mydata[CONFIG_PAYLOAD_SIZE];
+	//Nrf24_setRADDR(&dev, (uint8_t *)"FGHIJ");
+	Nrf24_setRADDR(&dev, (uint8_t *)CONFIG_RECEIVER_ADDRESS);
 	uint8_t payload = sizeof(mydata);
-	ESP_LOGI(pcTaskGetTaskName(0), "payload=%d", payload);
-	uint8_t channel = 90;
+	//uint8_t channel = 90;
+	uint8_t channel = CONFIG_RADIO_CHANNEL;
 	Nrf24_config(&dev, channel, payload);
 	Nrf24_printDetails(&dev);
 	ESP_LOGI(pcTaskGetTaskName(0), "Listening...");
 
 	MQTT_t mqttBuf;
 	while(1) {
-		if (Nrf24_dataReady(&dev)) { //When the program is received, the received data is output from the serial port
+		if (Nrf24_dataReady(&dev)) {
 			//traceHeap();
 			Nrf24_getData(&dev, mydata);
+			// When the program is received, the received data is output from the serial port
 			ESP_LOGI(pcTaskGetTaskName(0), "Got data from nRF24L01");
 			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetTaskName(0), mydata, sizeof(mydata), ESP_LOG_INFO);
 			mqttBuf.topic_type = PUBLISH;
@@ -188,27 +191,29 @@ void mirf_receiver(void *pvParameters)
 				ESP_LOGE(pcTaskGetTaskName(0), "xQueueSend Fail");
 			}
 
-		}
+		} // end if
 		vTaskDelay(1);
-	}
+	} // end while
 }
-#endif
+#endif // CONFIG_RECEIVER
 
 
 #if CONFIG_TRANSMITTER
 void mirf_transmitter(void *pvParameters)
 {
-	NRF24_t dev;
-
 	ESP_LOGI(pcTaskGetTaskName(0), "Start");
-	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CE_GPIO=%d",CONFIG_CE_GPIO);
-	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_CSN_GPIO=%d",CONFIG_CSN_GPIO);
-	spi_master_init(&dev, CONFIG_CE_GPIO, CONFIG_CSN_GPIO, CONFIG_MISO_GPIO, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO);
+	NRF24_t dev;
+	Nrf24_init(&dev);
 
-	uint8_t mydata[32];
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_PAYLOAD_SIZE=%d", CONFIG_PAYLOAD_SIZE);
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_DESTINATION_ADDRESS=[%s]", CONFIG_DESTINATION_ADDRESS);
+	ESP_LOGI(pcTaskGetTaskName(0), "CONFIG_RADIO_CHANNEL=%d", CONFIG_RADIO_CHANNEL);
+	//uint8_t mydata[32];
+	uint8_t mydata[CONFIG_PAYLOAD_SIZE];
 	Nrf24_setRADDR(&dev, (uint8_t *)"ABCDE");
 	uint8_t payload = sizeof(mydata);
-	uint8_t channel = 90;
+	//uint8_t channel = 90;
+	uint8_t channel = CONFIG_RADIO_CHANNEL;
 	Nrf24_config(&dev, channel, payload);
 	Nrf24_printDetails(&dev);
 
@@ -217,8 +222,9 @@ void mirf_transmitter(void *pvParameters)
 #if 0
 		// Test code
 		mydata.payload.now_millis = xTaskGetTickCount() * portTICK_RATE_MS;
-		Nrf24_setTADDR(&dev, (uint8_t *)"FGHIJ");			//Set the receiver address
-		Nrf24_send(&dev, mydata.value);				   //Send instructions, send random number value
+		// Set the receiver address
+		Nrf24_setTADDR(&dev, (uint8_t *)"FGHIJ");
+		Nrf24_send(&dev, mydata.value);
 
 		bool sended = false;
 		ESP_LOGI(pcTaskGetTaskName(0), "Wait for sending.....");
@@ -249,8 +255,10 @@ void mirf_transmitter(void *pvParameters)
 			for(int i=0;i<payload_len;i++) {
 				mydata[i] = mqttBuf.payload[i];
 			}
-			Nrf24_setTADDR(&dev, (uint8_t *)"FGHIJ");		//Set the receiver address
-			Nrf24_send(&dev, mydata);					//Send instructions, send random number value
+			// Set the receiver address
+			Nrf24_setRADDR(&dev, (uint8_t *)CONFIG_DESTINATION_ADDRESS);
+			//Nrf24_setTADDR(&dev, (uint8_t *)"FGHIJ");
+			Nrf24_send(&dev, mydata);
 
 			bool sended = false;
 			ESP_LOGI(pcTaskGetTaskName(0), "Wait for sending.....");
@@ -264,15 +272,15 @@ void mirf_transmitter(void *pvParameters)
 			if (sended) {
 				ESP_LOGI(pcTaskGetTaskName(0),"Send success");
 			} else {
-				ESP_LOGI(pcTaskGetTaskName(0),"Send fail:");
+				ESP_LOGW(pcTaskGetTaskName(0),"Send fail:");
 			}
 
-		}
-	}
+		} // end if
+	} // end while
 }
 
 
-#endif
+#endif // CONFIG_TRANSMITTER
 
 void mqtt_pub_task(void *pvParameters);
 void mqtt_sub_task(void *pvParameters);
