@@ -48,9 +48,6 @@ __You can change it to any pin using menuconfig.__
 ![config-app-1](https://user-images.githubusercontent.com/6020549/155939157-55604038-27c4-4cdd-9fb5-c1973f668c4f.jpg)
 ![config-app-2](https://user-images.githubusercontent.com/6020549/155939161-93c64e2a-4008-4309-8980-fb7173df1f02.jpg)
 
-## nRF24L01 Setting   
-![config-nrf24l01](https://user-images.githubusercontent.com/6020549/124592589-95874e80-de98-11eb-8953-db44222a685d.jpg)
-
 ## Radio Setting   
 ![config-radio-1](https://user-images.githubusercontent.com/6020549/155939263-ff917d86-0c07-4baf-b3ab-4165cafa39a6.jpg)
 ![config-radio-2](https://user-images.githubusercontent.com/6020549/155939265-67f89a9d-f723-4c61-9c6e-64392b4a96fb.jpg)
