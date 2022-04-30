@@ -3,8 +3,11 @@ nRF24L01 to mqtt bridge using esp32.
 It's purpose is to be a bridge between a nRF24L01 and a MQTT-Broker.    
 
 ![slide0001](https://user-images.githubusercontent.com/6020549/124595955-a33ed300-de9c-11eb-898d-e8cc4e8712fb.jpg)
-
 ![slide0002](https://user-images.githubusercontent.com/6020549/124596589-6b845b00-de9d-11eb-8279-83ee578cd872.jpg)
+
+![Standard](https://user-images.githubusercontent.com/6020549/154830046-77f034cf-ce30-4cbc-838c-66734656cd8e.JPG)
+![SMD-3](https://user-images.githubusercontent.com/6020549/154830127-366ee996-751d-48c0-879f-b201b1bb31f7.JPG)
+
 
 # Software requirements
 esp-idf v4.4 or later.   
