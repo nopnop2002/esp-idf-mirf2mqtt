@@ -88,23 +88,7 @@ You can receive MQTT data using mosquitto_sub.
 
 ![mosquitto_sub](https://user-images.githubusercontent.com/6020549/166089118-bfab6f00-0d80-423a-8e91-265a60e28639.jpg)
 
-You can use Arduino/Emiter/Emitter.ino for transmitter.   
-![sub-2](https://user-images.githubusercontent.com/6020549/124676646-e4b19b80-def9-11eb-95f2-d56050d75cce.jpg)
-
-### Transmit data to Arduino Environment   
-You can transmit MQTT data using mosquitto_pub.   
-```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
-
-![mosquitto_pub](https://user-images.githubusercontent.com/6020549/166089329-ebd14fa2-34ec-4680-b8f6-718da0eca8dc.jpg)
-
-You can use Arduino/Receive/Receive.ino for receiver.   
-![pub-2](https://user-images.githubusercontent.com/6020549/124676606-d2376200-def9-11eb-86ab-c0f17e958e55.jpg)
-
-# Limitation   
-The maximum payload size of nRF24L01 is 32 bytes.   
-When publishing data exceeding 32 bytes, only 32 bytes are used.   
-
-# Receive MQTT data using python
+You can receive MQTT data using python
 ```
 python -m pip install -U paho-mqtt
 python mqtt_sub.py
@@ -112,11 +96,22 @@ python mqtt_sub.py
 
 ![python-sub](https://user-images.githubusercontent.com/6020549/166089004-310ee52d-0cea-4311-b1b1-9f51adfc275d.jpg)
 
-# Send MQTT data using python
+### Transmit data to Arduino Environment   
+You can transmit MQTT data using mosquitto_pub.   
+```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
+
+![mosquitto_pub](https://user-images.githubusercontent.com/6020549/166089329-ebd14fa2-34ec-4680-b8f6-718da0eca8dc.jpg)
+
+You can transmit MQTT data using python
 ```
 python -m pip install -U paho-mqtt
 python mqtt_pub.py
 ```
+
+# Limitation   
+The maximum payload size of nRF24L01 is 32 bytes.   
+When publishing data exceeding 32 bytes, only 32 bytes are used.   
+
 
 # MQTT client Example
 Example code in various languages.   
