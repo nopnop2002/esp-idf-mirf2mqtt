@@ -84,7 +84,9 @@ After installing this library in your Arduino environment, run a sketch of the [
 
 ### Receive data from Arduino Environment   
 You can receive MQTT data using mosquitto_sub.   
-```mosquitto_sub -h broker.emqx.io -p 1883 -t '/mirf/#' -F %X -d```
+```
+mosquitto_sub -h broker.emqx.io -p 1883 -t '/mirf/#' -F %X -d
+```
 
 ![mosquitto_sub](https://user-images.githubusercontent.com/6020549/166089118-bfab6f00-0d80-423a-8e91-265a60e28639.jpg)
 
@@ -98,7 +100,9 @@ python mqtt_sub.py
 
 ### Transmit data to Arduino Environment   
 You can transmit MQTT data using mosquitto_pub.   
-```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
+```
+echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s
+```
 
 ![mosquitto_pub](https://user-images.githubusercontent.com/6020549/166089329-ebd14fa2-34ec-4680-b8f6-718da0eca8dc.jpg)
 
