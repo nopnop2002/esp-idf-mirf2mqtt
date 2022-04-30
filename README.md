@@ -74,7 +74,7 @@ ___The payload size and radio channel must match for both transmission and recep
 
 ## MQTT Server Setting   
 For Receiver, ESP32 publishes this topic.   
-For Transmitter, ESP32 subscribves this topic.   
+For Transmitter, ESP32 subscribes to this topic.   
 ![config-mqtt](https://user-images.githubusercontent.com/6020549/124592695-afc12c80-de98-11eb-9675-814f2ae3d931.jpg)
 
 # Communicate with Arduino Environment   
