@@ -55,14 +55,14 @@ __You can change it to any pin using menuconfig.__
 [Arduino] ---> [nRF24L01] ---> [ESP32] ---> [MQTT]
 ```
 
-![config-radio-1](https://user-images.githubusercontent.com/6020549/166088106-fcaa0739-381e-4197-b049-3260280b5a0b.jpg)
+![config-radio-1](https://user-images.githubusercontent.com/6020549/166088295-8850b41e-a55c-4338-92ce-43643d298cd0.jpg)
 
 - Receive from MQTT and send by radio   
 ```
 [Arduino] <--- [nRF24L01] <--- [ESP32] <--- [MQTT]
 ```
 
-![config-radio-2](https://user-images.githubusercontent.com/6020549/166088121-01fb8985-f034-4aa7-8785-9124d457c3ff.jpg)
+![config-radio-2](https://user-images.githubusercontent.com/6020549/166088297-a49f2806-1176-4160-b590-799feb4d4ea9.jpg)
 
 ___The payload size and radio channel must match for both transmission and reception.___
 
