@@ -41,7 +41,7 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 __You can change it to any pin using menuconfig.__   
 
 # Configuration for Transceiver
-![config-nrf24l01-1](https://user-images.githubusercontent.com/6020549/155939056-bbc9a506-7014-4340-b7b4-2b572ac4c353.jpg)
+![config-nrf24l01-1](https://user-images.githubusercontent.com/6020549/166088080-8f7bf7a8-f76c-4176-9a85-4308920faf0b.jpg)
 ![config-nrf24l01-2](https://user-images.githubusercontent.com/6020549/155939063-5f70f146-f73d-4656-86f8-e7d770607b22.jpg)
 
 # Configuration for Application
@@ -55,14 +55,14 @@ __You can change it to any pin using menuconfig.__
 [Arduino] ---> [nRF24L01] ---> [ESP32] ---> [MQTT]
 ```
 
-![config-radio-1](https://user-images.githubusercontent.com/6020549/155939263-ff917d86-0c07-4baf-b3ab-4165cafa39a6.jpg)
+![config-radio-1](https://user-images.githubusercontent.com/6020549/166088106-fcaa0739-381e-4197-b049-3260280b5a0b.jpg)
 
 - Receive from MQTT and send by radio   
 ```
 [Arduino] <--- [nRF24L01] <--- [ESP32] <--- [MQTT]
 ```
 
-![config-radio-2](https://user-images.githubusercontent.com/6020549/155939265-67f89a9d-f723-4c61-9c6e-64392b4a96fb.jpg)
+![config-radio-2](https://user-images.githubusercontent.com/6020549/166088121-01fb8985-f034-4aa7-8785-9124d457c3ff.jpg)
 
 ___The payload size and radio channel must match for both transmission and reception.___
 
