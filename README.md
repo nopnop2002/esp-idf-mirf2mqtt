@@ -74,13 +74,13 @@ ___The payload size and radio channel must match for both transmission and recep
 
 ## MQTT Server Setting   
 For Receiver, ESP32 publishes this topic.   
-For Transmitter, ESP32 subscrives this topic.   
+For Transmitter, ESP32 subscribves this topic.   
 ![config-mqtt](https://user-images.githubusercontent.com/6020549/124592695-afc12c80-de98-11eb-9675-814f2ae3d931.jpg)
 
 # Communicate with AtMega/STM32/ESP8266/ESP8285   
 I used [this](https://github.com/nopnop2002/Arduino-STM32-nRF24L01) library on Arduino environment.   
 Install this library in your Arduino environment.   
-After installing this library in your Arduino environment, run a sketch of the Arduino folder in this repository.   
+After installing this library in your Arduino environment, run a sketch of the [Arduino](https://github.com/nopnop2002/esp-idf-mirf2mqtt/tree/main/ArduinoCode) folder in this repository.   
 
 # Receive data from AtMega/STM32/ESP8266/ESP8285   
 You can receive MQTT data using mosquitto_sub.   
@@ -96,7 +96,7 @@ You can use Arduino/Emiter/Emitter.ino for transmitter.
 You can transmit MQTT data using mosquitto_pub.   
 ```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
 
-![pub-1](https://user-images.githubusercontent.com/6020549/124676609-d2cff880-def9-11eb-80ab-f49fea19f6d6.jpg)
+![mosquitto_sub](https://user-images.githubusercontent.com/6020549/166089118-bfab6f00-0d80-423a-8e91-265a60e28639.jpg)
 
 You can use Arduino/Receive/Receive.ino for receiver.   
 ![pub-2](https://user-images.githubusercontent.com/6020549/124676606-d2376200-def9-11eb-86ab-c0f17e958e55.jpg)
@@ -111,7 +111,7 @@ python -m pip install -U paho-mqtt
 python mqtt_sub.py
 ```
 
-![python-sub](https://user-images.githubusercontent.com/6020549/124855492-fc654e80-dfe3-11eb-8a9b-01d746479d88.jpg)
+![python-sub](https://user-images.githubusercontent.com/6020549/166089004-310ee52d-0cea-4311-b1b1-9f51adfc275d.jpg)
 
 # Send MQTT data using python
 ```
