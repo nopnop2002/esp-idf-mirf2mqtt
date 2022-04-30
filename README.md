@@ -82,7 +82,7 @@ I used [this](https://github.com/nopnop2002/Arduino-STM32-nRF24L01) library on A
 Install this library in your Arduino environment.   
 After installing this library in your Arduino environment, run a sketch of the [Arduino](https://github.com/nopnop2002/esp-idf-mirf2mqtt/tree/main/ArduinoCode) folder in this repository.   
 
-- Receive data from Arduino Environment   
+### Receive data from Arduino Environment   
 You can receive MQTT data using mosquitto_sub.   
 ```mosquitto_sub -h broker.emqx.io -p 1883 -t '/mirf/#' -F %X -d```
 
@@ -91,7 +91,7 @@ You can receive MQTT data using mosquitto_sub.
 You can use Arduino/Emiter/Emitter.ino for transmitter.   
 ![sub-2](https://user-images.githubusercontent.com/6020549/124676646-e4b19b80-def9-11eb-95f2-d56050d75cce.jpg)
 
-- Transmit data to Arduino Environment   
+### Transmit data to Arduino Environment   
 You can transmit MQTT data using mosquitto_pub.   
 ```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
 
