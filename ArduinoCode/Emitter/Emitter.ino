@@ -11,11 +11,16 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  //Set your own address (sender address) using 5 characters
-  Mirf.setRADDR((byte *)"ABCDE");         //Set your own address (receiver address) using 5 characters
-  Mirf.payload = sizeof(mydata);
-  Mirf.channel = 90;                      //Set the channel used
+  Mirf.payload = sizeof(mydata); // Set the payload size
+  Mirf.channel = 90;             //Set the channel used
   Mirf.config();
+
+  //Set your own address (sender address) using 5 characters
+  Mirf.setRADDR((byte *)"ABCDE");
+
+  //Set destination address using 5 characters
+  Mirf.setTADDR((byte *)"FGHIJ");
+  
   memset(mydata, 0, sizeof(mydata));
 }
 
@@ -26,7 +31,6 @@ void loop()
 
   //Serial.println(byteData,HEX);
   //Serial.println(offset);
-  Mirf.setTADDR((byte *)"FGHIJ");         //Set Destination address
   mydata[offset] = byteData;
 
   Mirf.send(mydata);                //Send instructions, send random number value

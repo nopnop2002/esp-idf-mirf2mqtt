@@ -15,7 +15,7 @@ This is because this version supports ESP32-C3.
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-mirf2mqtt
 cd esp-idf-mirf2mqtt
-idf.py set-target {esp32/esp32s2/esp32c3}
+idf.py set-target {esp32/esp32s2/esp32s3/esp32c3}
 idf.py menuconfig
 idf.py flash
 ```
@@ -28,13 +28,13 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 # Wirering
 
-|nRF24L01||ESP32|ESP32-S2|ESP32-C3|
+|nRF24L01||ESP32|ESP32-S2/S3|ESP32-C3|
 |:-:|:-:|:-:|:-:|:-:|
-|MISO|--|GPIO19|GPIO33|GPIO18|
+|MISO|--|GPIO19|GPIO37|GPIO18|
 |MOSI|--|GPIO23|GPIO35|GPIO19|
 |SCK|--|GPIO18|GPIO36|GPIO10|
-|CE|--|GPIO16|GPIO37|GPIO9|
-|CSN|--|GPIO17|GPIO38|GPIO8|
+|CE|--|GPIO16|GPIO34|GPIO9|
+|CSN|--|GPIO17|GPIO33|GPIO8|
 |GND|--|GND|GND|GND|
 |VCC|--|3.3V|3.3V|3.3V|
 
@@ -51,9 +51,17 @@ __You can change it to any pin using menuconfig.__
 ## Radio Setting   
 
 - Receive from radio and send by MQTT   
+```
+[Arduino] ---> [nRF24L01] ---> [ESP32] ---> [MQTT]
+```
+
 ![config-radio-1](https://user-images.githubusercontent.com/6020549/155939263-ff917d86-0c07-4baf-b3ab-4165cafa39a6.jpg)
 
 - Receive from MQTT and send by radio   
+```
+[Arduino] <--- [nRF24L01] <--- [ESP32] <--- [MQTT]
+```
+
 ![config-radio-2](https://user-images.githubusercontent.com/6020549/155939265-67f89a9d-f723-4c61-9c6e-64392b4a96fb.jpg)
 
 ___The payload size and radio channel must match for both transmission and reception.___
@@ -73,7 +81,7 @@ After installing this library in your Arduino environment, run a sketch of the A
 
 # Receive data from AtMega/STM32/ESP8266/ESP8285   
 You can receive MQTT data using mosquitto_sub.   
-```mosquitto_sub -h 192.168.10.40 -p 1883 -t '/mirf/#' -F %X -d```
+```mosquitto_sub -h broker.emqx.io -p 1883 -t '/mirf/#' -F %X -d```
 
 ![sub-1](https://user-images.githubusercontent.com/6020549/124676650-e5e2c880-def9-11eb-96d7-dd4475cdd2f1.jpg)
 
@@ -83,7 +91,7 @@ You can use Arduino/Emiter/Emitter.ino for transmitter.
 
 # Transmit data to AtMega/STM32/ESP8266/ESP8285   
 You can transmit MQTT data using mosquitto_pub.   
-```echo -ne "\x01\x02\x03" | mosquitto_pub -h 192.168.10.40 -p 1883 -t '/mirf' -s```
+```echo -ne "\x01\x02\x03" | mosquitto_pub -h broker.emqx.io -p 1883 -t '/mirf' -s```
 
 ![pub-1](https://user-images.githubusercontent.com/6020549/124676609-d2cff880-def9-11eb-80ab-f49fea19f6d6.jpg)
 
@@ -97,7 +105,7 @@ When publishing data exceeding 32 bytes, only 32 bytes are used.
 # Receive MQTT data using python
 ```
 python -m pip install -U paho-mqtt
-python sub.py
+python mqtt_sub.py
 ```
 
 ![python-sub](https://user-images.githubusercontent.com/6020549/124855492-fc654e80-dfe3-11eb-8a9b-01d746479d88.jpg)
@@ -105,7 +113,7 @@ python sub.py
 # Send MQTT data using python
 ```
 python -m pip install -U paho-mqtt
-python pub.py
+python mqtt_pub.py
 ```
 
 # MQTT client Example

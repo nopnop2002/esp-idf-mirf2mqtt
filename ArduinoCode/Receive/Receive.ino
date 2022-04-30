@@ -11,11 +11,14 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.setRADDR((byte *)"FGHIJ");  //Set your own address (receiver address) using 5 characters
-  Mirf.payload = sizeof(mydata);
-  Mirf.channel = 90;               //Set the used channel
+  Mirf.payload = sizeof(mydata);  // Set the payload size
+  Mirf.channel = 90;              //Set the used channel
   Mirf.config();
-  Serial.println("Listening...");  //Start listening to received data
+
+  //Set your own address (receiver address) using 5 characters
+  Mirf.setRADDR((byte *)"FGHIJ");  
+  
+  Serial.println("Listening...");
 }
 
 void loop()

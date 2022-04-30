@@ -4,17 +4,17 @@ menu "Application Configuration"
 
 		choice DIRECTION
 			prompt "Communication direction"
-			default Receiver
+			default RADIO_TO_MQTT
 			help
 				Select Communication direction.
-			config RECEIVER
-				bool "Receiver"
+			config RADIO_TO_MQTT
+				bool "Receive from radio and send by MQTT"
 				help
-					Execute Receiver.
-			config TRANSMITTER
-				bool "Transmitter"
+					Receive from radio and send by MQTT.
+			config MQTT_TO_RADIO
+				bool "Receive from MQTT and send by radio"
 				help
-					Execute Transmitter.
+					Receive from MQTT and send by radio
 		endchoice
 
 		config PAYLOAD_SIZE
@@ -25,14 +25,14 @@ menu "Application Configuration"
 				Payload size.
 
 		config RECEIVER_ADDRESS
-			depends on RECEIVER
+			depends on RADIO_TO_MQTT
 			string "My address"
 			default "FGHIJ"
 			help
 				My address.
 
 		config DESTINATION_ADDRESS
-			depends on TRANSMITTER
+			depends on MQTT_TO_RADIO
 			string "Destination address"
 			default "FGHIJ"
 			help
