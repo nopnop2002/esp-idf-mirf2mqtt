@@ -88,7 +88,7 @@ You can receive MQTT data using mosquitto_sub.
 
 ![mosquitto_sub](https://user-images.githubusercontent.com/6020549/166089118-bfab6f00-0d80-423a-8e91-265a60e28639.jpg)
 
-You can receive MQTT data using python
+You can receive MQTT data using python.   
 ```
 python -m pip install -U paho-mqtt
 python mqtt_sub.py
@@ -102,7 +102,7 @@ You can transmit MQTT data using mosquitto_pub.
 
 ![mosquitto_pub](https://user-images.githubusercontent.com/6020549/166089329-ebd14fa2-34ec-4680-b8f6-718da0eca8dc.jpg)
 
-You can transmit MQTT data using python
+You can transmit MQTT data using python.   
 ```
 python -m pip install -U paho-mqtt
 python mqtt_pub.py
