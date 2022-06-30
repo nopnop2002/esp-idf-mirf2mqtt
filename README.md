@@ -55,14 +55,14 @@ __You can change it to any pin using menuconfig.__
 
 - Receive from radio and send by MQTT   
 ```
-[Arduino] ---> [nRF24L01] ---> [ESP32] ---> [MQTT]
+[Arduino] ---> [nRF24L01] ~~~~~~ [nRF24L01] ---> [ESP32] ---> [MQTT]
 ```
 
 ![config-radio-1](https://user-images.githubusercontent.com/6020549/166088295-8850b41e-a55c-4338-92ce-43643d298cd0.jpg)
 
 - Receive from MQTT and send by radio   
 ```
-[Arduino] <--- [nRF24L01] <--- [ESP32] <--- [MQTT]
+[Arduino] <--- [nRF24L01] ~~~~~~ [nRF24L01] <--- [ESP32] <--- [MQTT]
 ```
 
 ![config-radio-2](https://user-images.githubusercontent.com/6020549/166088297-a49f2806-1176-4160-b590-799feb4d4ea9.jpg)
